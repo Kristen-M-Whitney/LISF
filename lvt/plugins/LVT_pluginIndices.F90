@@ -36,11 +36,12 @@
 !
 ! !REVISION HISTORY: 
 !  23 Oct 2008    Sujay Kumar  Initial Specification
-! 14 Nov 2017 Jossy Jacob Added MOD10A1V6 (MOD10A1_V006)
+!  14 Nov 2017 Jossy Jacob Added MOD10A1V6 (MOD10A1_V006)
 !  17 Oct 2018  Mahdi Navari  Enhanced the LVT reader to read the 
 !               Veg. Water Content (VWC) from SMAP SM dataset ! 
 !  19 Nov 2018  Mahdi Navari added suport to read SMAP_L3 brightness temperature
 !  10 Jan 2023  Mahdi Navari added suport for COAMPSout 
+!  21 Nov 2023  Kristen Whitney Added MOD10A1V61 (MOD10A1_V061)
 !
 !EOP
 module LVT_pluginIndices
@@ -191,6 +192,7 @@ module LVT_pluginIndices
    character*50, public,  parameter :: LVT_MOD10A1obsId       = "MOD10A1"
    character*50, public,  parameter :: LVT_MODSCAGobsId       = "MODSCAG"
    character*50, public,  parameter :: LVT_MOD10A1V6obsId     = "MOD10A1V6"
+   character*50, public,  parameter :: LVT_MOD10A1V61obsId    = "MOD10A1V61"
    character*50, public,  parameter :: LVT_ANSASNWDobsId      = "ANSA snow depth"
    character*50, public,  parameter :: LVT_ANSASWEobsId       = "ANSA SWE"
    character*50, public,  parameter :: LVT_CPCPRCPobsId       = "CPC precipitation"
