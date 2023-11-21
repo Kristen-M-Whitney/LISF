@@ -262,7 +262,7 @@ subroutine create_mod10a1v61obs_filename(odir, yr, mo, da, filename)
   write(unit=fda, fmt='(i2.2)') da
 
   filename = trim(odir)//'/'//trim(fyr)//'/MOD10A1.061_'//trim(fyr)//trim(fmo)//trim(fda)//&
-       '_c6_1km.nc4'
+       '.nc4'
 
 end subroutine create_mod10a1v61obs_filename
   
