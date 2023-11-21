@@ -34,7 +34,6 @@
 !               Veg. Water Content (VWC) from SMAP SM dataset ! 
 !  19 Nov 2018  Mahdi Navari added suport to read SMAP_L3 brightness temperature
 !  10 Jan 2023  Mahdi Navari added suport for COAMPSout 
-!  21 Nov 2023  Kristen Whitney added support for MOD10A1V61
 !
 !EOP
 module LVT_datastream_pluginMod
@@ -102,7 +101,6 @@ contains
     use MOD10A1_obsMod,         only : MOD10A1_obsInit
     use MODSCAG_obsMod,         only : MODSCAG_obsInit
     use MOD10A1V6_obsMod,       only : MOD10A1V6_obsInit
-    use MOD10A1V61_obsMod,      only : MOD10A1V61_obsInit
     use ANSASNWD_obsMod,        only : ANSASNWD_obsInit
     use ANSASWE_obsMod,         only : ANSASWE_obsInit
     use CPCPRCP_obsMod,         only : CPCPRCP_obsInit
@@ -215,7 +213,6 @@ contains
     external readMOD10A1obs
     external readMODSCAGobs
     external readMOD10A1V6obs
-    external readMOD10A1V61obs
     external readANSASNWDobs
     external readANSASWEobs
     external readCPCPRCPobs
@@ -394,9 +391,6 @@ contains
 
     call registerobssetup(trim(LVT_MOD10A1V6obsId)//char(0), MOD10A1V6_obsinit)
     call registerobsread(trim(LVT_MOD10A1V6obsId)//char(0),readMOD10A1V6obs)
-
-    call registerobssetup(trim(LVT_MOD10A1V61obsId)//char(0), MOD10A1V61_obsinit)
-    call registerobsread(trim(LVT_MOD10A1V61obsId)//char(0),readMOD10A1V61obs)
 
     call registerobssetup(trim(LVT_ANSASNWDobsId)//char(0), ANSASNWD_obsinit)
     call registerobsread(trim(LVT_ANSASNWDobsId)//char(0),readANSASNWDobs)

@@ -100,7 +100,6 @@ This document consists of 9 sections, described as follows:
 * Land Parameter Retrieval Model (LPRM) vegetation optical depth data stream
 * MERRA2 asm data stream
 * MOD10A1V6 fractional snow cover data stream
-* MOD10A1V61 fractional snow cover data stream
 * MODIS SPoRT LAI data stream
 * MODSCAG fractional snow cover data stream
 * OCO-2 Solar Induced Fluorescence (SIF) data stream
