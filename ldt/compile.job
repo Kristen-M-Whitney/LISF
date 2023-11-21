@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --job-name=lis-compile
+#SBATCH --ntasks=1
+#SBATCH --qos=debug
+#SBATCH --time=01:00:00
+#SBATCH --account=s2443
+
+echo $DEV_ENV
+cd $SLURM_SUBMIT_DIR
+
+ulimit -s unlimited
+module load lisf_7.5_intel_2021.4.0
+./compile -j 28

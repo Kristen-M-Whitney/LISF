@@ -114,6 +114,7 @@ LVT output methodology:                 "2d gridspace"
 | "`SNODEP metobs`"                 | WMO snow depth station observations
 | "`MOD10A1`"                       | MOD10A1 fractional snow cover data from MODIS
 | "`MOD10A1V6`"                     | MOD10A1.006 Normalized Difference from MODIS
+| "`MOD10A1V61`"                    | MOD10A1.061 Normalized Difference Snow Index from MODIS
 | "`ANSA snowdepth`"                | ANSA snow depth retrievals
 | "`ANSA SWE`"                      | ANSA SWE retrievals
 | "`CPC precipitation`"             | CPC unified precipitation product
@@ -1985,6 +1986,15 @@ MOD10A1 observation directory:          ./MOD10A1
 .Example _lvt.config_ entry
 ....
 MOD10A1V6 observation directory:          ./MOD10A1V6
+....
+
+==== MOD10A1V61 snow cover data      
+
+`MOD10A1V61 observation directory:` specifies the location of the 1km resolution MOD10A1V61 fractional snow cover data
+
+.Example _lvt.config_ entry         
+....
+MOD10A1V61 observation directory:          ./MOD10A1V61
 ....
 
 ==== GRACE (processed from LDT) data
