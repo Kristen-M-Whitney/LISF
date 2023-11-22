@@ -71,13 +71,12 @@ subroutine readMOD10A1V61obs(source)
      mod10a1v61obs(source)%startflag = .false. 
 
      call create_mod10a1v61obs_filename(mod10a1v61obs(source)%odir,&
-          LVT_rc%dyr(source), LVT_rc%dmo(source),&
-          LVT_rc%dda(source), filename)
+          LVT_rc%dyr(source), LVT_rc%ddoy(source), filename)
 
 #if(defined USE_NETCDF3 || defined USE_NETCDF4)
      inquire(file=trim(filename),exist=file_exists)
-     if(file_exists) then 
-        write(LVT_logunit,*) '[INFO] Reading MOD10A1V61 file ',trim(filename)
+     if(file_exists) then
+        write(LVT_logunit,*) '[INFO] Reading MOD10A1V61 file ',trim(filename) 
         
         allocate(lb(mod10a1v61obs(source)%modis_nc*mod10a1v61obs(source)%modis_nr))
         allocate(snfrac1(mod10a1v61obs(source)%modis_nc,mod10a1v61obs(source)%modis_nr))
@@ -106,7 +105,7 @@ subroutine readMOD10A1V61obs(source)
 #endif        
         do r=1,mod10a1v61obs(source)%modis_nr
            do c=1,mod10a1v61obs(source)%modis_nc
-              if(snfrac1(c,r).lt.0.or.snfrac1(c,r).gt.100) then 
+              if(snfrac1(c,r).lt.0.or.snfrac1(c,r).gt.100) then
                  lb(c+(r-1)*mod10a1v61obs(source)%modis_nc) = .false.
               endif
            enddo
@@ -215,7 +214,7 @@ end subroutine interp_mod10a1v61
 ! \label{create_mod10a1v61obs_filename}
 !
 ! !INTERFACE: 
-subroutine create_mod10a1v61obs_filename(odir, yr, mo, da, filename)
+subroutine create_mod10a1v61obs_filename(odir, yr, doy, filename)
 ! 
 ! !USES:   
   implicit none
@@ -226,14 +225,13 @@ subroutine create_mod10a1v61obs_filename(odir, yr, mo, da, filename)
 !
 ! !DESCRIPTION: 
 !  This subroutine creates the MOD10A1V61 filename based on the given 
-!  date (year, month, day and hour)
+!  date (year, day of year)
 ! 
 !  The arguments are: 
 !  \begin{description}
 !   \item[odir]      MOD10A1V61 base directory
 !   \item[yr]        year of data
-!   \item[mo]        month of data
-!   \item[da]        day of data
+!   \item[doy]       calendar day of year of data
 !   \item[filename]  Name of the MOD10A1v-c6 file
 !  \end{description}
 ! 
@@ -247,22 +245,18 @@ subroutine create_mod10a1v61obs_filename(odir, yr, mo, da, filename)
 ! !ARGUMENTS:  
   character(len=*)  :: odir
   integer           :: yr
-  integer           :: mo
-  integer           :: da
+  integer           :: doy
   character(len=*)  :: filename
 ! 
 !EOP
 
   character*4       :: fyr
-  character*2       :: fmo
-  character*2       :: fda
+  character*3       :: fdoy
 
   write(unit=fyr, fmt='(i4.4)') yr
-  write(unit=fmo, fmt='(i2.2)') mo
-  write(unit=fda, fmt='(i2.2)') da
+  write(unit=fdoy, fmt='(i3.3)') doy
 
-  filename = trim(odir)//'/'//trim(fyr)//'/MOD10A1.061_'//trim(fyr)//trim(fmo)//trim(fda)//&
-       '.nc4'
+  filename = trim(odir)//'/'//trim(fyr)//'/MOD10A1.061_'//trim(fyr)//trim(fdoy)//'.nc4'
 
 end subroutine create_mod10a1v61obs_filename
   
