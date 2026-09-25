@@ -23,6 +23,7 @@ module LIS_metforcing_pluginMod
 !  11 Dec 2003   Sujay Kumar:  Initial Specification
 !  11 Oct 2014   K. Arsenault: Reorganzed for syncing with LDT
 !  29 Jun 2026: Kristen whitney, added support for MERRA2bias
+!  02 Oct 2025   Fadji Maina: Added support for GEOS-ITbias
 ! 
 !EOP  
   implicit none
@@ -143,6 +144,10 @@ subroutine LIS_metforcing_plugin
 
 #if ( defined MF_GEOS_IT )
    use geosit_forcingMod
+#endif
+
+#if ( defined MF_GEOS_ITbias )
+   use geositbias_forcingMod
 #endif
 
 #if ( defined MF_ERA5 )
@@ -405,6 +410,13 @@ subroutine LIS_metforcing_plugin
    external timeinterp_geosit
    external finalize_geosit
    external reset_geosit
+#endif
+
+#if ( defined MF_GEOS_ITbias )
+   external get_geositbias
+   external timeinterp_geositbias
+   external finalize_geositbias
+   external reset_geositbias
 #endif
 
 #if ( defined MF_ERA5 )
@@ -830,6 +842,16 @@ subroutine LIS_metforcing_plugin
                                   timeinterp_geosit)
    call registerresetmetforc(trim(LIS_geositId)//char(0),reset_geosit)
    call registerfinalmetforc(trim(LIS_geositId)//char(0),finalize_geosit)
+#endif
+
+#if ( defined MF_GEOS_ITbias )
+! - GEOS-ITbias Forcing:
+   call registerinitmetforc(trim(LIS_geositbiasId)//char(0),init_geositbias)
+   call registerretrievemetforc(trim(LIS_geositbiasId)//char(0),get_geositbias)
+   call registertimeinterpmetforc(trim(LIS_geositbiasId)//char(0), &
+                                  timeinterp_geositbias)
+   call registerresetmetforc(trim(LIS_geositbiasId)//char(0),reset_geositbias)
+   call registerfinalmetforc(trim(LIS_geositbiasId)//char(0),finalize_geositbias)
 #endif
 
 #if ( defined MF_ERA5)

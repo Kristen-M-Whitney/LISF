@@ -17,6 +17,7 @@
 ! 21 Jul 2004: Sujay Kumar   Initial Specification
 ! 23 Oct 2007: Kristi Arsenault, Implemented code for LISv5.0
 ! 29 Jun 2026: Kristen Whitney, Made precipitation handling optional; only assign rainf when LIS_FORC_CRainf is selected
+! 15 Oct 2025: Fadji Maina, Made precipitation handling optional; only assign rainf when LIS_FORC_CRainf is selected
 ! 
 ! !INTERFACE:
 subroutine template_f2t(n)
